@@ -135,7 +135,7 @@
         .total-bar { position: absolute; bottom: 0; width: 100%; background: var(--teal-dark); color: white; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 10; font-size: 14px; }
         .retention-text { color: var(--red-retention); font-size: 16px; font-weight: bold; margin-left: 15px; background: rgba(255,255,255,0.9); padding: 2px 8px; border-radius: 4px; }
 
-        /* --- SLIDE 4: MENSUAL REALISTA --- */
+        /* --- SLIDE 4: MENSUAL REALISTA --- 
         .monthly-layout { padding: 30px 50px; z-index: 2; width: 100%; height: 100%; display: grid; grid-template-rows: auto 1fr; gap: 20px;}
         .m-grid-container { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
         .m-card { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); text-align: center; border: 1px solid #eee; }
@@ -147,7 +147,7 @@
         .summary-list li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee; }
         .summary-list li:last-child { border-bottom: none; font-weight: bold; font-size: 24px; margin-top: 15px; color: var(--teal-dark); border-top: 2px solid var(--teal); padding-top: 15px; }
         
-        .retention-row { color: var(--red-retention); font-weight: bold; font-size: 20px; }
+        .retention-row { color: var(--red-retention); font-weight: bold; font-size: 20px; }*/
 
     </style>
 </head>
@@ -278,7 +278,7 @@
         document.querySelectorAll('.disp-city').forEach(e => e.innerText = info.name);
 
         recalcQuadrants();
-        recalcMonthly();
+        //recalcMonthly();
     }
 
     // --- SLIDE 3 ---
@@ -380,7 +380,7 @@
         document.getElementById('total_bar_content').innerHTML = footerHTML;
     }
 
-    // --- SLIDE 4 ---
+    /* --- SLIDE 4 ---
     function recalcMonthly() {
         const info = CITIES[state.city];
         const rules = RULES[info.type];
@@ -440,7 +440,7 @@
         document.getElementById('res_recalc').innerText = "$" + bonus.toLocaleString(undefined, {maximumFractionDigits:0});
         document.getElementById('res_retention').innerText = "-$" + retention_amount.toLocaleString(undefined, {maximumFractionDigits:0});
         document.getElementById('res_grand_total').innerText = "$" + grand_total.toLocaleString(undefined, {maximumFractionDigits:0});
-    }
+    }*/
 
     window.onload = init;
 </script>
@@ -616,7 +616,7 @@
         </div>
 </div>
 
-<!-- SLIDE 4 -->
+<!-- SLIDE 4 
 <div class="slide-container" id="slide4">
     <div class="slide-header">
         <span class="slide-title">4. Escenario Mensual Real</span>
@@ -641,7 +641,8 @@
             </ul>
         </div>
     </div>
-</div>
+</div>-->
 
 </body>
 </html>
+
