@@ -381,7 +381,27 @@
         grandTotal += processList(3, state.q3);
         grandTotal += processList(4, state.q4);
 
-        let finalPay = info.base + grandTotal - totalRetention;
+        // ----- VALIDACIÓN DE CUOTA MENSUAL DE ACTIVACIONES -----
+        // 1) Calcular puntos de Activaciones
+        let actPoints = 0;
+        state.q1.forEach(p => {actPoints += (p.type === "BASIC") ? 0.5 : 1;});
+        // 2) Cuota mensual según mes
+        const monthlyQuota = rules.m_quota[mIdx];
+        // 3) Determinar pago final
+        let finalPay = 0;
+        // ● Si NO llega a 1.0 puntos → NO cobra nada
+        if (actPoints < 1.0) 
+        {
+            finalPay = 0;
+            // ● Si llega a 1.0 pero no cumple cuota → solo base
+        } else if (actPoints >= 1.0 && actPoints < monthlyQuota) 
+            {
+                finalPay = info.base;
+                // ● Si cumple cuota → base + comisiones – retención
+            } else if (actPoints >= monthlyQuota) 
+                {
+                    finalPay = info.base + grandTotal - totalRetention;
+                }
 
         let footerHTML = `
              <div class="breakdown-group">
@@ -661,6 +681,7 @@
 
 </body>
 </html>
+
 
 
 
