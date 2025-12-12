@@ -333,8 +333,24 @@
                     let factor = (p.type === 'BASIC') ? 0.5 : rules.f_plus[mIdx];
                     if(info.type === 'MTY') factor = 0.5; // MTY Weekly Fixed
                     comm = p.rent * factor;
-                } else if (qNum === 2) { // Renovations
-                    comm = p.rent * 1.0;
+                } else if (qNum === 2) { // Renovations con reglas por mes
+                    // ● 1) total de activaciones para ver si cumple cuota mensual
+                    const totalActs = state.q1.length;
+                    // ● 2) cuota mensual según mes seleccionado
+                    const monthlyQuota = rules.m_quota[mIdx];
+                    // ● 3) total de renovaciones para regla 1.5x
+                    const totalRenos = state.q2.length;
+                    let factor = 0.5;  // valor base
+                    if (totalActs >= monthlyQuota) 
+                    {
+                        factor = 1.0; // cumplió cuota mensual
+                        if (totalRenos >= 10) 
+                        {
+                            factor = 1.5; // 10+ renovaciones y cuota cumplida
+                        }
+                    }
+                    comm = p.rent * factor;
+                    
                 } else if (qNum >= 3) { // Simples / B2B
                     comm = p.rent * p.factor;
                 }
@@ -645,6 +661,7 @@
 
 </body>
 </html>
+
 
 
 
